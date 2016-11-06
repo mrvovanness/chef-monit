@@ -29,6 +29,7 @@ end
 template node["monit"]["main_config_path"] do
   owner  "root"
   group  "root"
+  cookbook node["monit"]["cookbook_template"] || 'monit'
   mode   "0600"
   source "monitrc.erb"
   notifies :reload, "service[monit]" if node["monit"]["reload_on_change"]
